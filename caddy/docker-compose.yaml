@@ -1,0 +1,19 @@
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: always
+    networks:
+      proxy:
+    volumes:
+      - ./data:/data
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 80:80
+      - 443:443
+    entrypoint: /usr/bin/caddy run --adapter caddyfile --config /config/Caddyfile
+
+networks:
+  proxy:
+    external: true
