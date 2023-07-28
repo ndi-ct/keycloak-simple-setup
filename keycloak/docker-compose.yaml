@@ -5,12 +5,12 @@ services:
       restart: always
       environment:
         KC_DB: postgres
-        KC_DB_URL: jdbc:postgresql://keycloak-db:5432/kc
-        KC_DB_USER: kc
+        KC_DB_URL: jdbc:postgresql://keycloak-db:5432/keycloak
+        KC_DB_USER: keycloak
         KC_DB_SCHEMA: public
         KC_DB_PASSWORD: ${KC_DB_PASSWORD}
         KC_HOSTNAME: ${KC_HOSTNAME}
-        KEYCLOAK_ADMIN: ${KC_ADMIN}
+        KEYCLOAK_ADMIN: cttest
         KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
         KC_PROXY: edge
       depends_on:
@@ -30,8 +30,9 @@ services:
         - ./data:/var/lib/postgresql/data
         - /etc/localtime:/etc/localtime:ro
       environment:
-        POSTGRES_DB: kc
-        POSTGRES_USER: kc
+        POSTGRES_DB: keycloak
+        POSTGRES_USER: keycloak
+        POSTGRES_PASSWORD: ${KC_DB_PASSWORD}
       networks:
         - keycloak
 
