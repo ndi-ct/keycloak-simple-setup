@@ -1,0 +1,3 @@
+keycloak.example.com {
+    reverse_proxy http://keycloak:8080
+}
